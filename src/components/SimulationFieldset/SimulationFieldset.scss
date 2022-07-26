@@ -1,0 +1,26 @@
+@import '../../style/vars.scss';
+
+.questions-wrapper {
+  display: grid;
+  grid-template-columns: auto;
+  column-gap: 2rem;
+
+  @include desktop {
+    grid-template-columns: auto auto;
+  }
+}
+
+.field.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 6.5rem;
+
+  .label.disabled {
+    color: $light;
+  }
+
+  .select {
+    margin-top: 0.5rem;
+  }
+}
