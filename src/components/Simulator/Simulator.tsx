@@ -1,97 +1,85 @@
-import * as wagesByDemographicData from "../../datasets/wages-by-demographic";
-import * as discriminationByDemographicData from "../../datasets/discrimination-by-demographic";
-import React from "react";
+import * as wagesByDemographicData from "@datasets/wages-by-demographic";
+import * as discriminationByDemographicData from "@datasets/discrimination-by-demographic";
+import { Dataset } from "@/datasets/models";
+import { LocaleUtils } from "@/utils/locale-utils";
+import { useState } from "react";
+import { SimulationForm } from "../SimulationForm/SimulationForm";
 import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
-import { LocaleUtils } from "../../utils/locale-utils";
-import { FormConfiguration, WeightTree } from "../../models/datasets/form";
-import { SimulationForm } from "../SimulationForm/SimulationForm";
 
-interface IState {
-  activeTab: string;
-}
+const availableDatasets: Dataset.Source[] = [
+  wagesByDemographicData.default,
+  discriminationByDemographicData.default,
+];
 
-interface IAvailableForms {
-  id: string;
-  weights: WeightTree;
-  configuration: FormConfiguration;
-}
+export function Simulator() {
+  /**
+   * SETUP
+   */
 
-// const DialogStateContext = React.createContext(false);
+  const labels = new LocaleUtils(en, fr).getLabels();
 
-export class Simulator extends React.Component<void, IState> {
-  private labels = new LocaleUtils(en, fr).getLabels();
+  const [activeTab, setActiveTab] = useState(
+    availableDatasets[0].configuration.formId
+  );
 
-  private availableForms: IAvailableForms[] = [
-    {
-      id: "wagesByDemographic",
-      weights: wagesByDemographicData.dataWeights,
-      configuration: wagesByDemographicData.formConfiguration,
-    },
-    {
-      id: "discriminationByDemographic",
-      weights: discriminationByDemographicData.dataWeights,
-      configuration: discriminationByDemographicData.formConfiguration,
-    },
-  ];
+  /**
+   * RENDER
+   */
 
-  constructor(props: void) {
-    super(props);
+  const getActiveClass = (id: string) =>
+    activeTab === id ? "is-active" : undefined;
+  const getTabLabel = (id: string) =>
+    (labels.tab as Record<Dataset.Pivoted["configuration"]["formId"], string>)[
+      id
+    ];
 
-    this.state = {
-      activeTab: this.availableForms[0].id,
-    };
-  }
-
-  render() {
-    return (
-      <div className="container">
-        {this.displayTabs()}
-        {this.availableForms.map((form) => this.displayTabContent(form))}
-      </div>
-    );
-  }
-
-  private handleTabClick(id: string) {
-    return () => {
-      this.setState({
-        activeTab: id,
-      });
-    };
-  }
-
-  private displayTabs() {
-    const getActiveClass = (id: string) =>
-      this.state.activeTab === id ? "is-active" : undefined;
-    const getTabLabel = (id: string) =>
-      (this.labels.tab as Record<IAvailableForms["id"], string>)[id];
-
-    return (
-      <div className="tabs is-centered">
-        <ul>
-          {this.availableForms.map((form) => (
-            <li className={getActiveClass(form.id)}>
-              <a href="about:blank" onClick={this.handleTabClick(form.id)}>
-                {getTabLabel(form.id)}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-
-  private displayTabContent(form: IAvailableForms) {
+  const simulatorTabContent = (sourceDataset: Dataset.Source) => {
     const hiddenClass =
-      this.state.activeTab !== form.id ? "is-hidden" : undefined;
+      activeTab !== sourceDataset.configuration.formId
+        ? "is-hidden"
+        : undefined;
 
     return (
-      <div className={hiddenClass}>
-        <SimulationForm
-          weights={form.weights}
-          configuration={form.configuration}
-        ></SimulationForm>
+      <div key={sourceDataset.configuration.formId} className={hiddenClass}>
+        <SimulationForm sourceDataset={sourceDataset}></SimulationForm>
       </div>
     );
-  }
+  };
+
+  const handleTabClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    formId: string
+  ) => {
+    setActiveTab(formId);
+
+    e.preventDefault();
+  };
+
+  const SimulatorTabs = () => (
+    <div className="tabs is-centered">
+      <ul>
+        {availableDatasets.map((dataset) => (
+          <li
+            className={getActiveClass(dataset.configuration.formId)}
+            key={dataset.configuration.formId}
+          >
+            <a
+              href="about:blank"
+              onClick={(e) => handleTabClick(e, dataset.configuration.formId)}
+            >
+              {getTabLabel(dataset.configuration.formId)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  return (
+    <div className="container">
+      <SimulatorTabs />
+      {availableDatasets.map((form) => simulatorTabContent(form))}
+    </div>
+  );
 }

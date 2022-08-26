@@ -1,4 +1,4 @@
-import Locations from "../../../i18n/locations.i18n.fr.json";
+import Locations from "@datasets/i18n/locations.i18n.fr.json";
 import { en } from "./en.i18n";
 
 const YN = {

@@ -1,49 +1,45 @@
-import {
-  ConditionAction,
-  ConditionEntry,
-  QuestionNode,
-} from "../../../models/datasets/form";
+import { SelectMeta, ElementState } from "@/datasets/models";
 import { en } from "../i18n/en.i18n";
-import { generateGroupedOptions } from "../util/generateGroupedOptions";
+import { displayGroupedOptions } from "../util/generateGroupedOptions";
 
 interface IProp {
+  meta: SelectMeta<keyof typeof en.question>;
   index: number;
-  key: keyof typeof en.question;
   labels: typeof en;
-  restriction: ConditionEntry;
-  choiceNode: QuestionNode;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>, key: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const DropdownSelectorDisplay = (props: IProp) => {
-  const disabled = props.restriction[props.key] === ConditionAction.DISABLE;
+export const DropdownSelectorDisplay = ({
+  meta,
+  index,
+  labels,
+  onChange,
+}: IProp) => {
+  const disabled = meta.elementState === ElementState.DISABLED;
 
   return (
-    <div className="field question" id={"csim-demographic-form-" + props.key}>
+    <div className="field question" id={"csim-demographic-form-" + meta.idKey}>
       <label
-        htmlFor={props.key}
+        htmlFor={meta.idKey}
         className={"label " + disabled && "is-disabled"}
       >
-        {props.index + 1}.{" "}
-        {props.labels.question[props.key] ??
-          `this.labels.question.${props.key}`}
+        {index + 1}.{" "}
+        {labels.question[meta.labelKey] ??
+          `this.labels.question.${meta.labelKey}`}
       </label>
       <div className="select is-fullwidth">
         <select
-          name={props.key}
-          id={props.key}
-          onChange={(e) => props.onChange(e, props.key)}
+          name={meta.idKey}
+          id={meta.idKey}
+          onChange={onChange}
           disabled={disabled}
           required={!disabled}
+          defaultValue=""
         >
-          <option value="" selected disabled hidden>
+          <option value="" disabled hidden>
             --
           </option>
-          {generateGroupedOptions(
-            props.choiceNode,
-            props.labels,
-            props.restriction
-          )}
+          {displayGroupedOptions({ meta, labels })}
         </select>
       </div>
     </div>

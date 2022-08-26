@@ -1,105 +1,103 @@
-import React from "react";
 import {
-  ISurveyResponses,
-  SimulatorStateContext,
-} from "../../models/contexts/SimulatorStateContext";
-import { FormConfiguration, WeightTree } from "../../models/datasets/form";
-import { LocaleUtils } from "../../utils/locale-utils";
+  sourceDataToCmaPivotedData,
+  pivotedDataToFormMetadata,
+} from "@/datasets/converters";
+import { Dataset } from "@/datasets/models";
+import { applyFormRules } from "@/datasets/rules/apply.rules";
+import { LocaleUtils } from "@/utils/locale-utils";
+import { useState } from "react";
 import { ResultsDialog } from "../ResultsDialog/ResultsDialog";
 import { SimulationFieldset } from "../SimulationFieldset/SimulationFieldset";
 import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
-import "./simulation-form.scss";
+import { SimulationFormContext } from "./SimulationForm.context";
+import "./SimulationForm.scss";
 
 interface IProp {
-  weights: WeightTree;
-  configuration: FormConfiguration;
+  sourceDataset: Dataset.Source;
 }
 
-interface IState {
-  isResultsButtonEnabled: boolean;
-  isResultsShown: boolean;
-  surveyResponses: ISurveyResponses;
-}
+export const SimulationForm = ({ sourceDataset }: IProp) => {
+  /**
+   * SETUP
+   */
 
-export class SimulationForm extends React.Component<IProp, IState> {
-  declare context: ISurveyResponses;
-  static contextType = SimulatorStateContext;
+  const labels = new LocaleUtils(en, fr).getLabels();
 
-  private labels = new LocaleUtils(en, fr).getLabels();
+  const [isResultsShown, setResultsShown] = useState(false);
+  const [pivotedData, setPivotedData] = useState(() =>
+    sourceDataToCmaPivotedData(sourceDataset)
+  );
+  const [formMeta, setFormMeta] = useState(() =>
+    applyFormRules(
+      pivotedData.configuration,
+      pivotedDataToFormMetadata(pivotedData.data)
+    )
+  );
 
-  constructor(props: IProp) {
-    super(props);
+  /**
+   * HANDLERS
+   */
 
-    this.state = {
-      isResultsButtonEnabled: false,
-      isResultsShown: false,
-      surveyResponses: this.context,
-    };
-  }
-
-  private handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    this.setState({
-      ...this.state,
-      isResultsShown: true,
-    });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setResultsShown(true);
 
     e.preventDefault();
-  }
+  };
 
-  private handleHideResults() {
-    this.setState({
-      ...this.state,
-      isResultsShown: false,
-    });
-  }
+  const handleHideResults = () => {
+    setResultsShown(false);
+  };
 
-  private displayResultsButton() {
+  /**
+   * RENDER
+   */
+
+  const displayResultsButton = () => {
     return (
       <input
         className="button is-link is-large my-2"
         type="submit"
-        value={this.labels.seeResults}
+        value={labels.seeResults}
       />
     );
-  }
+  };
 
-  render() {
-    const formClass =
-      "container" + (this.state.isResultsShown ? " is-blurred" : "");
-    const resultsWrapperClass =
-      "results-wrapper" + (this.state.isResultsShown ? "" : " is-invisible");
+  const formClass = "container" + (isResultsShown ? " is-blurred" : "");
+  const resultsWrapperClass =
+    "results-wrapper" + (isResultsShown ? "" : " is-invisible");
 
-    return (
-      <div className="form-wrapper">
-        <form
-          className={formClass}
-          id={this.props.configuration.formId}
-          onSubmit={(e) => this.handleSubmit(e)}
+  return (
+    <div className="form-wrapper">
+      <form
+        className={formClass}
+        id={pivotedData.configuration.formId}
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <SimulationFormContext.Provider
+          value={{ formMeta, setFormMeta, pivotedData, setPivotedData }}
         >
-          <SimulatorStateContext.Provider value={this.state.surveyResponses}>
-            <SimulationFieldset
-              weights={this.props.weights}
-              configuration={this.props.configuration}
-            ></SimulationFieldset>
-          </SimulatorStateContext.Provider>
-          <div className="results-button">{this.displayResultsButton()}</div>
-        </form>
-        <div
-          className={resultsWrapperClass}
-          id={this.props.configuration.formId}
+          <SimulationFieldset
+            sourceDataset={sourceDataset}
+          ></SimulationFieldset>
+        </SimulationFormContext.Provider>
+        <div className="results-button">{displayResultsButton()}</div>
+      </form>
+      <div
+        className={resultsWrapperClass}
+        id={pivotedData.configuration.formId}
+      >
+        <SimulationFormContext.Provider
+          value={{ formMeta, setFormMeta, pivotedData, setPivotedData }}
         >
-          <SimulatorStateContext.Provider value={this.state.surveyResponses}>
-            {
-              <ResultsDialog
-                configuration={this.props.configuration}
-                isResultsShown={this.state.isResultsShown}
-                onHideResults={this.handleHideResults}
-              ></ResultsDialog>
-            }
-          </SimulatorStateContext.Provider>
-        </div>
+          {
+            <ResultsDialog
+              configuration={pivotedData.configuration}
+              onHideResults={handleHideResults}
+            ></ResultsDialog>
+          }
+        </SimulationFormContext.Provider>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

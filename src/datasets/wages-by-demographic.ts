@@ -1,27 +1,30 @@
-import { ConditionAction, FormConfiguration, WeightTree } from '@models/datasets/form';
-import rawData from '$/weights/output/wages-by-demographic.json';
+import rawData from "../../config/wages-by-demographic.json";
+import { Dataset } from "./models/configuration.model";
+import { ElementState } from "./models/logic.model";
 
-export const dataWeights: WeightTree = rawData;
-
-export const formConfiguration: FormConfiguration = {
-  formId: 'wagesByDemographic',
-  weightCount: 3,
-  pivotQuestion: {
-    key: 'cma',
-    position: 4,
-  },
-  logic: {
+export default {
+  kind: "SOURCE",
+  configuration: {
+    formId: "wagesByDemographic",
+    weightCount: 3,
+    cmaPosition: 4,
     conditions: {
-      permanentResident: {
-        [ConditionAction.ENABLE]: ['bornInCanada.no'],
+      logic: {
+        permanentResident: {
+          [ElementState.ENABLED]: { bornInCanada: "no" },
+        },
+        arrivalAge: {
+          [ElementState.ENABLED]: {
+            bornInCanada: "no",
+            permanentResident: "established",
+          },
+        },
       },
-      arrivalAge: {
-        [ConditionAction.ENABLE]: ['bornInCanada.no', '&&', 'permanentResident.established'],
+      default: {
+        permanentResident: ElementState.DISABLED,
+        arrivalAge: ElementState.DISABLED,
       },
-    },
-    defaults: {
-      permanentResident: ConditionAction.DISABLE,
-      arrivalAge: ConditionAction.DISABLE,
     },
   },
-};
+  data: rawData,
+} as Dataset.Source;

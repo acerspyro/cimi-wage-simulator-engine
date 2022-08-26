@@ -1,138 +1,89 @@
-import { FormDataService } from "./service/form-data.service";
-import { FormLogicService } from "./service/form-logic.service";
-import React from "react";
-import { FormConfiguration, DataTree } from "../../models/datasets/form";
-import { LocaleUtils } from "../../utils/locale-utils";
+import { Dataset, OptionMeta, SelectMeta } from "@/datasets/models";
 import {
-  ISurveyResponses,
-  SimulatorStateContext,
-} from "../../models/contexts/SimulatorStateContext";
-import * as _ from "lodash";
+  pivotedDataToFormMetadata,
+  sourceDataToCmaPivotedData,
+} from "@/datasets/converters";
+import { applyFormRules } from "@/datasets/rules/apply.rules";
+import { LocaleUtils } from "@/utils/locale-utils";
+import { useContext } from "react";
+import { SimulationFormContext } from "../SimulationForm/SimulationForm.context";
 import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
-import "./simulation-fieldset.scss";
+import "./SimulationFieldset.scss";
 import { DropdownSelectorDisplay } from "./stateless/DropdownSelectorDisplay";
 
 interface IProp {
-  weights: DataTree.Branch;
-  configuration: FormConfiguration;
+  sourceDataset: Dataset.Source;
 }
 
-interface IState {
-  surveyResponses: ISurveyResponses;
-}
+export const SimulationFieldset = ({ sourceDataset }: IProp) => {
+  /**
+   * SETUP
+   */
 
-export class SimulationFieldset extends React.Component<IProp, IState> {
-  declare context: ISurveyResponses;
-  static contextType = SimulatorStateContext;
+  const labels = new LocaleUtils(en, fr).getLabels();
 
-  private labels = new LocaleUtils(en, fr).getLabels();
+  const formMeta = useContext(SimulationFormContext).formMeta;
+  const setFormMeta = useContext(SimulationFormContext).setFormMeta;
+  const pivotedData = useContext(SimulationFormContext).pivotedData;
+  const setPivotedData = useContext(SimulationFormContext).setPivotedData;
 
-  private formData: FormDataService;
-  private formLogic: FormLogicService;
+  /**
+   * HANDLERS
+   */
 
-  private setSurveyResponse = (
-    property: keyof ISurveyResponses,
-    key: string | null,
-    value: any
-  ) => {
-    if (key === null) {
-      this.setState({
-        surveyResponses: {
-          ...this.state.surveyResponses,
-          [property]: value,
-        },
-      });
-    } else {
-      this.setState({
-        surveyResponses: {
-          ...this.state.surveyResponses,
-          [property]: {
-            ...this.state.surveyResponses[property],
-            [key]: value,
-          },
-        },
-      });
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectMeta = formMeta.get(e.target.id);
+    const selection = e.target.value;
+    const cmaFieldWasChanged = e.target.id === "cma";
+
+    if (selectMeta) {
+      // Target actually exists, set new weights and selection
+
+      selectMeta.selection = selection;
+      selectMeta.weight = selectMeta.getFromPath(selection) as OptionMeta;
+
+      if (cmaFieldWasChanged) {
+        // We just changed the CMA, update the pivoted data to reflect the new CMA
+
+        setPivotedData(sourceDataToCmaPivotedData(sourceDataset, selection));
+      }
+
+      if (pivotedData) {
+        /**
+         * Check that we're not too early.
+         * If not, apply the form logic and place new form metadata based on the currently pivoted data.
+         */
+
+        setFormMeta(
+          applyFormRules(
+            pivotedData.configuration,
+            pivotedDataToFormMetadata(pivotedData.data, formMeta)
+          )
+        );
+      }
     }
   };
 
-  constructor(props: IProp) {
-    super(props);
+  /**
+   * RENDER
+   */
 
-    this.state = {
-      surveyResponses: this.context,
-    };
+  // Visual iterator
+  let i = 0;
+  const dropdownSelectors: JSX.Element[] = [];
 
-    // Set up services
-    this.formData = new FormDataService(
-      this.props.weights,
-      this.props.configuration,
-      this.state.surveyResponses
+  formMeta.forEach((selectMeta) => {
+    dropdownSelectors.push(
+      <DropdownSelectorDisplay
+        meta={selectMeta as SelectMeta<keyof typeof en.question>}
+        index={i++}
+        key={selectMeta.idKey}
+        labels={labels}
+        onChange={handleChange}
+      ></DropdownSelectorDisplay>
     );
-    this.formLogic = new FormLogicService(this.props.configuration.logic);
+  });
 
-    // Set up empty selections
-    this.formData.questions.forEach((_value, key) => {
-      this.setSurveyResponse("selection", key, null);
-    });
-
-    // Set up baseline restrictions
-    this.state.surveyResponses.restriction = this.formLogic.getRestrictions({});
-  }
-
-  private handleChange(e: React.ChangeEvent<HTMLSelectElement>, key: string) {
-    this.setSurveyResponse("selection", key, e.target.value);
-  }
-
-  componentDidUpdate() {
-    this.setSurveyResponse(
-      "restriction",
-      null,
-      this.formLogic.getRestrictions(this.state.surveyResponses.selection)
-    );
-
-    if (this.state.surveyResponses.selection.cma) {
-      const newWeightsState: ISurveyResponses["weights"] = {};
-
-      Object.entries(this.state.surveyResponses.selection).forEach(
-        ([key, value]) => {
-          if (value !== null) {
-            const weightValue = _.get(
-              this.props.weights,
-              key === "cma"
-                ? `${value}.cma`
-                : `${this.state.surveyResponses.selection.cma}.${key}.${value}`
-            );
-
-            if (Array.isArray(weightValue)) {
-              newWeightsState[key] = weightValue;
-            }
-          }
-        }
-      );
-
-      this.setSurveyResponse("weights", null, newWeightsState);
-    }
-  }
-
-  render() {
-    // Visual iterator
-    let i = 0;
-    const dropdownSelectors: JSX.Element[] = [];
-
-    this.formData.questions.forEach((choiceNode, questionKey) =>
-      dropdownSelectors.push(
-        <DropdownSelectorDisplay
-          index={i++}
-          key={questionKey as keyof typeof en.question}
-          labels={this.labels}
-          restriction={this.state.surveyResponses.restriction}
-          choiceNode={choiceNode}
-          onChange={this.handleChange}
-        ></DropdownSelectorDisplay>
-      )
-    );
-
-    return <div className="questions-wrapper">{dropdownSelectors}</div>;
-  }
-}
+  return <div className="questions-wrapper">{dropdownSelectors}</div>;
+};

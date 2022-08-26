@@ -1,41 +1,45 @@
-import { ConditionEntry, OptionTree } from "../../../models/datasets/form";
+import { SelectMeta, OptionMeta, OptgroupMeta } from "@/datasets/models";
 import { en } from "../i18n/en.i18n";
 import { DropdownGroupDisplay } from "../stateless/DropdownGroupDisplay";
 import { DropdownOptionDisplay } from "../stateless/DropdownOptionDisplay";
 
-export function generateGroupedOptions(
-  choiceNode: OptionTree.Branch,
-  labels: typeof en,
-  restriction: ConditionEntry
-) {
-  const walk = (data: OptionTree.Branch, depth = 0, parentKey = "") => {
-    parentKey = !!parentKey ? parentKey + "." : "";
-    const renderStack: JSX.Element[] = [];
+interface IProp {
+  meta: SelectMeta;
+  labels: typeof en;
+}
 
-    if (data !== null) {
-      Object.entries(data).forEach(([key, val]) => {
-        if (val === null) {
-          renderStack.push(
-            <DropdownOptionDisplay
-              key={`${parentKey}${key}`}
-              labels={labels.choice}
-              restriction={restriction}
-            ></DropdownOptionDisplay>
-          );
-        } else {
-          renderStack.push(
-            <DropdownGroupDisplay
-              key={key}
-              labels={labels}
-              options={walk(val, depth + 1, `${parentKey}${key}`)}
-            ></DropdownGroupDisplay>
-          );
-        }
-      });
+export function displayGroupedOptions({ meta, labels }: IProp) {
+  const walk = (
+    optionOrOptgroup: OptionMeta | OptgroupMeta,
+    walkedKey: string
+  ) => {
+    if (optionOrOptgroup instanceof OptionMeta) {
+      return (
+        <DropdownOptionDisplay
+          key={`${optionOrOptgroup.idKey}`}
+          labelKey={`${walkedKey}.${optionOrOptgroup.idKey}`}
+          labels={labels.choice}
+        ></DropdownOptionDisplay>
+      );
+    } else {
+      return (
+        <DropdownGroupDisplay
+          key={`${optionOrOptgroup.idKey}`}
+          labelKey={`${walkedKey}.${optionOrOptgroup.idKey}`}
+          labels={labels}
+          options={Array.from(optionOrOptgroup.values()).map((optgroup) =>
+            walk(optgroup, `${walkedKey}.${optionOrOptgroup.idKey}`)
+          )}
+        ></DropdownGroupDisplay>
+      );
     }
-
-    return renderStack;
   };
 
-  return walk(choiceNode);
+  const renderStack: JSX.Element[] = [];
+
+  meta.forEach((optionOrOptgroup) => {
+    renderStack.push(walk(optionOrOptgroup, meta.idKey));
+  });
+
+  return renderStack;
 }

@@ -1,70 +1,84 @@
-import React from "react";
-import {
-  ISurveyResponses,
-  SimulatorStateContext,
-} from "../../models/contexts/SimulatorStateContext";
-import { FormConfiguration } from "../../models/datasets/form";
-import { LocaleUtils } from "../../utils/locale-utils";
+import { Dataset, FormMeta, SelectMeta, ElementState } from "@/datasets/models";
+import { LocaleUtils } from "@/utils/locale-utils";
+import { useContext } from "react";
+import { Hero } from "react-bulma-components";
+import { SimulationFormContext } from "../SimulationForm/SimulationForm.context";
 import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
 import "./ResultsDialog.scss";
+import { DiscriminationByDemographicResults } from "./stateless/DiscriminationByDemographicResults";
+import { WagesByDemographicResults } from "./stateless/WagesByDemographicResults";
 
 interface IProp {
-  configuration: FormConfiguration;
+  configuration: Dataset.Pivoted["configuration"];
   onHideResults: () => void;
-  isResultsShown: boolean;
 }
 
-interface IState {
-  surveyResponses: ISurveyResponses;
-}
+const compileData = (index: number, formMeta: FormMeta) => {
+  return Array.from(formMeta.values()).reduce(
+    (previous, selectMeta: SelectMeta) =>
+      selectMeta.elementState === ElementState.ENABLED &&
+      selectMeta.weight.length
+        ? previous + selectMeta.weight[index]
+        : previous,
+    0
+  );
+};
 
-export class ResultsDialog extends React.Component<IProp, IState> {
-  declare context: ISurveyResponses;
-  static contextType = SimulatorStateContext;
+export const ResultsDialog = ({ configuration, onHideResults }: IProp) => {
+  /**
+   * SETUP
+   */
 
-  private labels = new LocaleUtils(en, fr).getLabels();
+  const labels = new LocaleUtils(en, fr).getLabels();
+  const formMeta = useContext(SimulationFormContext).formMeta;
 
-  private compileData(index: number) {
-    return Object.entries(this.state.surveyResponses.weights).reduce(
-      (previous, [_key, value]) => previous + value[index],
-      0
-    );
-  }
+  /**
+   * RENDER
+   */
 
-  private displayClosePopupButton() {
-    return (
-      <button className="button" onClick={() => this.props.onHideResults()}>
-        {this.labels.closePopup}
-      </button>
-    );
-  }
+  const displayData = () => {
+    const compiledWeights = [];
 
-  private displayData() {
-    const listItems = [];
-
-    for (let i = 0; i < this.props.configuration.weightCount; i++) {
-      listItems.push(<li>{this.compileData(i)}</li>);
+    for (let i = 0; i < configuration.weightCount; i++) {
+      compiledWeights.push(compileData(i, formMeta));
     }
 
-    return listItems;
-  }
+    switch (configuration.formId) {
+      case "discriminationByDemographic": {
+        return (
+          <DiscriminationByDemographicResults
+            calculatedWeights={compiledWeights}
+            labels={labels.datatype.discriminationByDemographic}
+          ></DiscriminationByDemographicResults>
+        );
+      }
 
-  render() {
-    return (
-      <div className="box">
-        <h2>Your expected wage</h2>
-        <ul>{this.displayData()}</ul>
-        <div className="container is-flex is-justify-content-center">
-          {this.displayClosePopupButton()}
-        </div>
-      </div>
-    );
-  }
+      case "wagesByDemographic": {
+        return (
+          <WagesByDemographicResults
+            calculatedWeights={compiledWeights}
+            labels={labels.datatype.wagesByDemographic}
+          ></WagesByDemographicResults>
+        );
+      }
 
-  componentDidUpdate(prevProps: IProp) {
-    if (prevProps.isResultsShown !== this.props.isResultsShown) {
-      // Do something
+      default:
+        throw new Error("Invalid form ID given for results dialog");
     }
-  }
-}
+  };
+
+  return (
+    <Hero>
+      <Hero.Body>
+        {displayData()}
+        <button
+          className="button is-link is-large mt-6"
+          onClick={() => onHideResults()}
+        >
+          {labels.closePopup}
+        </button>
+      </Hero.Body>
+    </Hero>
+  );
+};
