@@ -5,6 +5,16 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: process.env.APP_ENV === "development" ? "/" : "/dist/",
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
+    manifest: true,
+    minify: "terser",
+    rollupOptions: {
+      input: path.resolve(__dirname, "src/main.tsx"),
+    },
+  },
   resolve: {
     alias: [
       {

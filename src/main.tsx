@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { Simulator } from "@components/Simulator/Simulator";
 import "./style/main.scss";
 
-ReactDOM.createRoot(
-  document.getElementById("cimi-simulator-root") as HTMLElement
-).render(
+ReactDOM.render(
   <React.StrictMode>
     <Simulator />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("cimi-simulator-root") as HTMLElement
 );

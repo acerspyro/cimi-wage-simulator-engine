@@ -1,0 +1,20 @@
+{
+  "name": "acerspyro/cimi-simulator",
+  "description": "Simulator component for the integrationindex.ca website",
+  "type": "wordpress-plugin",
+  "license": "PROPRIETARY",
+  "autoload": {
+    "psr-4": {
+      "Acerspyro\\CimiSimulator\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Maxim Therrien",
+      "email": "maxim@acerspyro.ca"
+    }
+  ],
+  "require": {
+    "idleberg/wordpress-vite-assets": "^0.6.1"
+  }
+}

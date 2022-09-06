@@ -1,0 +1,38 @@
+{
+    "name": "idleberg/vite-manifest",
+    "description": "A parser for Vite v2 manifest files",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "vite",
+        "vitejs",
+        "vite manifest"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Idleberg\\ViteManifest\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jan T. Sott",
+            "email": "idleberg@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "league/uri": "^6.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^1.0.0",
+        "friendsofphp/php-cs-fixer": "^3.8"
+    },
+    "scripts": {
+        "format": "vendor/bin/php-cs-fixer fix ./src",
+        "lint": "php -l ./src",
+        "test": "vendor/bin/codecept run"
+    }
+}
