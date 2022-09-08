@@ -3,6 +3,8 @@
 .hero {
   height: min-content;
   margin-top: 4rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   transition: margin-top 200ms, filter 200ms;
   border-radius: 0.5rem;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
@@ -18,6 +20,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include tablet {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
 
     .button {
       width: min-content;
@@ -44,7 +51,7 @@
 }
 
 .card.discrimination-by-demographic-results {
-  width: 30rem;
+  max-width: 30rem;
 
   &:not(:last-of-type) {
     margin-bottom: 2rem;
@@ -60,7 +67,7 @@
 }
 
 .card.wages-by-demographic-results {
-  width: 30rem;
+  max-width: 30rem;
   text-align: center;
 
   h2 {
