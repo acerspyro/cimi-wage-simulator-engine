@@ -10,7 +10,15 @@ export class LocaleUtils<T> {
   static getComponentClosestLanguage(
     element: HTMLElement = document.documentElement
   ): string {
-    let closestElement = element.closest("[lang]") as HTMLElement;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const closestElement = element.closest("[lang]") as HTMLElement;
+    const langParam = urlParams.get("lang");
+
+    if (langParam) {
+      return langParam === "fr" ? "fr" : "en";
+    }
+
     return closestElement ? closestElement.lang : "en";
   }
 }
