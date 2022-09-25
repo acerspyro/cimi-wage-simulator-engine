@@ -8,15 +8,18 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "wp:build": "wp-scripts build",
-    "wp:start": "wp-scripts start"
+    "wp:start": "wp-scripts start",
+    "generate-weights": "npx ts-node --esm --experimental-specifier-resolution=node ./generator/src/index.ts"
   },
   "dependencies": {
     "@types/lodash": "^4.14.182",
+    "camelcase": "^7.0.0",
+    "csv-parse": "^5.3.0",
     "currency.js": "^2.0.4",
     "lodash": "^4.17.21",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "react-bulma-components": "^4.1.0"
+    "react-bulma-components": "^4.1.0",
+    "react-dom": "^17.0.0"
   },
   "devDependencies": {
     "@kucrut/vite-for-wp": "^0.3.0",
