@@ -10,6 +10,9 @@ export function DiscriminationByDemographicResults({
   calculatedWeights,
   labels,
 }: IProp) {
+  const score = (weight: number) =>
+    ((1 / (1 + Math.exp(-weight))) * 100).toFixed(1);
+
   return (
     <div>
       {calculatedWeights.map((weight, weightIndex) => (
@@ -21,7 +24,7 @@ export function DiscriminationByDemographicResults({
             <h2>{labels.headerLabels[weightIndex]}</h2>
             <Content
               dangerouslySetInnerHTML={{
-                __html: labels.scoreLabel((weight * 100).toFixed(1)),
+                __html: labels.scoreLabel(score(weight)),
               }}
             />
           </Card.Content>
