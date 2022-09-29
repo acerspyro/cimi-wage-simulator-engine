@@ -5,29 +5,34 @@ import { en } from "../i18n/en.i18n";
 
 interface IProp {
   calculatedWeights: Array<number>;
-  labels: typeof en.datatype.wagesByDemographic;
+  labels: typeof en.datatype.wages;
 }
 
-function weightToCurrencyAmount(weight: number, locale: string) {
-  return currency(weight, {
-    decimal: locale === "fr" ? "," : ".",
-    separator: locale === "fr" ? "." : ",",
-    pattern: locale === "fr" ? "#\u00a0!" : "!#",
-  }).format();
-}
+const MIN_SAMPLE_SIZE = 20000.0;
+const MAX_SAMPLE_SIZE = 200000.0;
 
-export function WagesByDemographicResults({
-  calculatedWeights,
-  labels,
-}: IProp) {
+const CURRENCY_OPTS = {
+  fr: {
+    decimal: ",",
+    separator: " ",
+    pattern: "#\u00a0!",
+    negativePattern: "-#\u00a0!",
+    precision: 0,
+  },
+  en: {
+    decimal: ".",
+    separator: ",",
+    pattern: "!#",
+    negativePattern: "-!#",
+    precision: 0,
+  },
+} as Record<string, currency.Options>;
+
+export function WagesResults({ calculatedWeights, labels }: IProp) {
   const locale = LocaleUtils.getComponentClosestLanguage();
 
-  const weightToCurrencyAmount = (weight: number) => {
-    return currency(weight, {
-      decimal: locale === "fr" ? "," : ".",
-      separator: locale === "fr" ? "." : ",",
-    }).format();
-  };
+  const weightToCurrencyAmount = (weight: number) =>
+    currency(weight, CURRENCY_OPTS[locale]).format();
 
   return (
     <div>
@@ -35,9 +40,7 @@ export function WagesByDemographicResults({
         <Card.Content>
           <h2>{labels.headerLabel}</h2>
           <div className="exact-wage">
-            {labels.exactScoreLabel(
-              weightToCurrencyAmount(calculatedWeights[0])
-            )}
+            {weightToCurrencyAmount(calculatedWeights[0])}
           </div>
           <Content
             dangerouslySetInnerHTML={{

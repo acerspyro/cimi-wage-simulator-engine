@@ -1,5 +1,5 @@
-import * as wagesByDemographicData from "@datasets/wages-by-demographic";
-import * as discriminationByDemographicData from "@datasets/discrimination-by-demographic";
+import * as wagesData from "@datasets/wages";
+import * as discriminationData from "@datasets/discrimination";
 import { Dataset } from "@/datasets/models";
 import { LocaleUtils } from "@/utils/locale-utils";
 import { useState } from "react";
@@ -8,8 +8,8 @@ import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
 
 const availableDatasets: Dataset.Source[] = [
-  wagesByDemographicData.default,
-  discriminationByDemographicData.default,
+  wagesData.default,
+  discriminationData.default,
 ];
 
 export function Simulator() {
@@ -20,7 +20,7 @@ export function Simulator() {
   const labels = new LocaleUtils(en, fr).getLabels();
 
   const [activeTab, setActiveTab] = useState(
-    availableDatasets[0].configuration.formId
+    availableDatasets[0].configuration.id
   );
 
   /**
@@ -30,18 +30,14 @@ export function Simulator() {
   const getActiveClass = (id: string) =>
     activeTab === id ? "is-active" : undefined;
   const getTabLabel = (id: string) =>
-    (labels.tab as Record<Dataset.Pivoted["configuration"]["formId"], string>)[
-      id
-    ];
+    (labels.tab as Record<Dataset.Pivoted["configuration"]["id"], string>)[id];
 
   const simulatorTabContent = (sourceDataset: Dataset.Source) => {
     const hiddenClass =
-      activeTab !== sourceDataset.configuration.formId
-        ? "is-hidden"
-        : undefined;
+      activeTab !== sourceDataset.configuration.id ? "is-hidden" : undefined;
 
     return (
-      <div key={sourceDataset.configuration.formId} className={hiddenClass}>
+      <div key={sourceDataset.configuration.id} className={hiddenClass}>
         <SimulationForm sourceDataset={sourceDataset}></SimulationForm>
       </div>
     );
@@ -61,14 +57,14 @@ export function Simulator() {
       <ul>
         {availableDatasets.map((dataset) => (
           <li
-            className={getActiveClass(dataset.configuration.formId)}
-            key={dataset.configuration.formId}
+            className={getActiveClass(dataset.configuration.id)}
+            key={dataset.configuration.id}
           >
             <a
               href="about:blank"
-              onClick={(e) => handleTabClick(e, dataset.configuration.formId)}
+              onClick={(e) => handleTabClick(e, dataset.configuration.id)}
             >
-              {getTabLabel(dataset.configuration.formId)}
+              {getTabLabel(dataset.configuration.id)}
             </a>
           </li>
         ))}

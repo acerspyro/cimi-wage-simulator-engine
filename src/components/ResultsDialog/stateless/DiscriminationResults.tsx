@@ -3,13 +3,10 @@ import { en } from "../i18n/en.i18n";
 
 interface IProp {
   calculatedWeights: Array<number>;
-  labels: typeof en.datatype.discriminationByDemographic;
+  labels: typeof en.datatype.discrimination;
 }
 
-export function DiscriminationByDemographicResults({
-  calculatedWeights,
-  labels,
-}: IProp) {
+export function DiscriminationResults({ calculatedWeights, labels }: IProp) {
   const score = (weight: number) =>
     ((1 / (1 + Math.exp(-weight))) * 100).toFixed(1);
 

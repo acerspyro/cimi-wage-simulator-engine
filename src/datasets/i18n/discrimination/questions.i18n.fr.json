@@ -1,0 +1,123 @@
+{
+  "cma": {
+    "$": "Dans quelle ville (RMR) résidez-vous actuellement\u00a0?",
+    "abbotsfordMission": "Abbotsford - Mission",
+    "barrie": "Barrie",
+    "belleville": "Belleville",
+    "brantford": "Brantford",
+    "calgary": "Calgary",
+    "edmonton": "Edmonton",
+    "greaterSudbury": "Grand Sudbury",
+    "guelph": "Guelph",
+    "halifax": "Halifax",
+    "hamilton": "Hamilton",
+    "kelowna": "Kelowna",
+    "kingston": "Kingston",
+    "kitchener": "Kitchener",
+    "lethbridge": "Lethbridge",
+    "london": "London",
+    "moncton": "Moncton",
+    "montreal": "Montréal",
+    "oshawa": "Oshawa",
+    "ottawa": "Ottawa",
+    "peterborough": "Peterborough",
+    "quebec": "Ville de Québec",
+    "regina": "Regina",
+    "saguenay": "Saguenay",
+    "saintJohn": "Saint John",
+    "saskatoon": "Saskatoon",
+    "sherbrooke": "Sherbrooke",
+    "stCatharinesNiagara": "St. Catharines - Niagara",
+    "stJohns": "St. John's",
+    "thunderBay": "Thunder Bay",
+    "toronto": "Toronto",
+    "troisRivieres": "Trois-Rivières",
+    "vancouver": "Vancouver",
+    "victoria": "Victoria",
+    "windsor": "Windsor",
+    "winnipeg": "Winnipeg"
+  },
+  "bornInCanada": {
+    "$": "Êtes-vous né au Canada\u00a0?",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "permanentResident": {
+    "$": "Depuis combien de temps êtes-vous arrivé au Canada\u00a0?",
+    "recent": "≤ 5 années",
+    "established": "> 5 années"
+  },
+  "arrivalAge": {
+    "$": "Quel âge aviez-vous quand vous êtes arrivé au Canada\u00a0?",
+    "child": "0-11 ans",
+    "adult": "12 ans et plus"
+  },
+  "ethnicGroup": {
+    "$": "Êtes-vous Blanc, Autochtone, ou membre d’une communauté racisée\u00a0? Veuillez sélectionner le groupe auquel vous vous identifiez le plus.",
+    "white": "Blanc",
+    "racialized": "Groupe racisé tel que Noir, Chinois, Arabe, etc.",
+    "indigenous": "Peuples Autochtones"
+  },
+  "birthSex": {
+    "$": "Quel est votre sexe à la naissance\u00a0?",
+    "female": "Femme",
+    "male": "Homme"
+  },
+  "spokenLanguage": {
+    "$": "Quelles sont les langues officielles dans lesquelles vous pouvez mener une conversation\u00a0?",
+    "en": "Anglais",
+    "fr": "Français",
+    "both": "Anglais et français",
+    "neither": "Ni l'anglais ni le français"
+  },
+  "education": {
+    "$": "Quel est le plus haut niveau d'éducation que vous avez atteint\u00a0?",
+    "noDegree": "Moins que diplôme secondaire ou équivalent",
+    "highSchool": "Diplôme secondaire ou équivalent",
+    "trades": "Certificat ou diplôme d’apprenti ou d’une école de métier",
+    "college": "Certificat ou diplôme d'un collège, d'un cégep ou d'un autre établissement non universitaire",
+    "belowBachelors": "Certificat ou diplôme universitaire inférieur au baccalauréat",
+    "bachelors": "Baccalauréat",
+    "aboveBachelors": "Certificat ou diplôme universitaire supérieur au baccalauréat"
+  },
+  "age": {
+    "$": "Quel âge avez-vous\u00a0?",
+    "18To24": "18 - 24",
+    "25To44": "25 - 44",
+    "45To64": "45 - 64",
+    "over65": "65+"
+  },
+  "job": {
+    "$": "Quelle est votre occupation\u00a0?",
+    "management": "Profession de gestion",
+    "professional": "Les emplois professionnels (qui requièrent généralement un diplôme universitaire, comme les médecins, les dentistes et les architectes).",
+    "technical": "Les emplois techniques et les métiers spécialisés (qui nécessitent généralement un diplôme d'études supérieures ou une formation d'apprenti, comme les cuisiniers, les plombiers et les électriciens)",
+    "intermediate": "Les emplois intermédiaires (qui nécessitent généralement un diplôme d'études secondaires et/ou une formation spécifique à l'emploi, comme les bouchers industriels, les conducteurs de camions longue distance et les serveurs d'aliments et de boissons).",
+    "labour": "Les emplois de main-d'œuvre (qui donnent généralement lieu à une formation sur le tas, comme les cueilleurs de fruits, le personnel de nettoyage et les travailleurs des champs pétrolifères).",
+    "noWork": "Ne travaille pas"
+  },
+  "grossIncome": {
+    "$": "Selon votre meilleure estimation, quel est votre revenu total annuel personnel, avant taxes et déductions de toutes sources\u00a0?",
+    "lt20K": "< $20,000",
+    "20To39K": "$20,000 à $39,999",
+    "40To59K": "$40,000 à $59,999",
+    "60To79K": "$60,000 à $79,999",
+    "80To99K": "$80,000 à $99,999",
+    "100To119K": "$100,000 à $119,999",
+    "mt120K": "$120,000 ou plus"
+  },
+  "maritalStatus": {
+    "$": "Quel est votre état civil\u00a0?",
+    "married": "Marié",
+    "commonLaw": "Conjoint de fait",
+    "widowed": "Veuf",
+    "separated": "Séparé",
+    "divorced": "Divorcé",
+    "singleNeverMarried": "Célibataire, jamais marié"
+  },
+  "disabled": {
+    "$": "Avez-vous un handicap\u00a0?",
+    "yes": "Oui",
+    "no": "Non"
+  }
+}

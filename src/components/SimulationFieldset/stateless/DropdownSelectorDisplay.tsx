@@ -1,11 +1,12 @@
 import { SelectMeta, ElementState } from "@/datasets/models";
-import { en } from "../i18n/en.i18n";
+import { I18nStrings } from "@/datasets/models/i18nStrings.model";
+import { LocaleUtils } from "@/utils/locale-utils";
 import { displayGroupedOptions } from "../util/generateGroupedOptions";
 
 interface IProp {
-  meta: SelectMeta<keyof typeof en.question>;
+  meta: SelectMeta;
   index: number;
-  labels: typeof en;
+  labels: I18nStrings;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -23,9 +24,7 @@ export const DropdownSelectorDisplay = ({
         htmlFor={meta.idKey}
         className={"label " + disabled && "is-disabled"}
       >
-        {index + 1}.{" "}
-        {labels.question[meta.labelKey] ??
-          `this.labels.question.${meta.labelKey}`}
+        {index + 1}. {LocaleUtils.i18n(labels, `${meta.idKey}.$`)}
       </label>
       <div className="select is-fullwidth">
         <select

@@ -1,0 +1,123 @@
+{
+  "cma": {
+    "$": "What city (CMA) do you currently reside in?",
+    "abbotsfordMission": "Abbotsford - Mission",
+    "barrie": "Barrie",
+    "belleville": "Belleville",
+    "brantford": "Brantford",
+    "calgary": "Calgary",
+    "edmonton": "Edmonton",
+    "greaterSudbury": "Greater Sudbury",
+    "guelph": "Guelph",
+    "halifax": "Halifax",
+    "hamilton": "Hamilton",
+    "kelowna": "Kelowna",
+    "kingston": "Kingston",
+    "kitchener": "Kitchener",
+    "lethbridge": "Lethbridge",
+    "london": "London",
+    "moncton": "Moncton",
+    "montreal": "Montreal",
+    "oshawa": "Oshawa",
+    "ottawa": "Ottawa",
+    "peterborough": "Peterborough",
+    "quebec": "Quebec City",
+    "regina": "Regina",
+    "saguenay": "Saguenay",
+    "saintJohn": "Saint John",
+    "saskatoon": "Saskatoon",
+    "sherbrooke": "Sherbrooke",
+    "stCatharinesNiagara": "St. Catharines - Niagara",
+    "stJohns": "St. John's",
+    "thunderBay": "Thunder Bay",
+    "toronto": "Toronto",
+    "troisRivieres": "Trois-Rivières",
+    "vancouver": "Vancouver",
+    "victoria": "Victoria",
+    "windsor": "Windsor",
+    "winnipeg": "Winnipeg"
+  },
+  "bornInCanada": {
+    "$": "Were you born in Canada?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "permanentResident": {
+    "$": "How long ago did you land in Canada?",
+    "recent": "≤ 5 years",
+    "established": "> 5 years"
+  },
+  "arrivalAge": {
+    "$": "How old were you when you landed in Canada?",
+    "child": "0-11 years old",
+    "adult": "12 years old or older"
+  },
+  "ethnicGroup": {
+    "$": "Are you White, Indigenous or a member of a racialized community? Please select the group that you identify with most.",
+    "white": "White",
+    "racialized": "Racialized group such as Black, Chinese, Arab, etc.",
+    "indigenous": "Indigenous Peoples"
+  },
+  "birthSex": {
+    "$": "What is your sex at birth?",
+    "male": "Male",
+    "female": "Female"
+  },
+  "spokenLanguage": {
+    "$": "Which official languages can you conduct a conversation in?",
+    "en": "English",
+    "fr": "French",
+    "both": "Both English and French",
+    "neither": "Neither English nor French"
+  },
+  "education": {
+    "$": "What is the highest level of education that you have completed?",
+    "noDegree": "Less than high school diploma or its equivalent",
+    "highSchool": "Secondary (high) school diploma or equivalency certificate",
+    "trades": "Apprenticeship or trades certificate or diploma",
+    "college": "College, CEGEP or other non-university certificate or diploma",
+    "belowBachelors": "University certificate or diploma below bachelor level",
+    "bachelors": "Bachelor's degree",
+    "aboveBachelors": "University certificate or diploma above bachelor level"
+  },
+  "age": {
+    "$": "How old are you?",
+    "18To24": "18 - 24",
+    "25To44": "25 - 44",
+    "45To64": "45 - 64",
+    "over65": "65+"
+  },
+  "job": {
+    "$": "What is your occupation?",
+    "management": "Management job",
+    "professional": "Professional jobs (that usually call for a degree from a university, such as doctors, dentists, and architects.)",
+    "technical": "Technical jobs and skilled trades (that usually call for a college diploma or training as an apprentice, such as chefs, plumbers, and electricians.)",
+    "intermediate": "Intermediate jobs (that usually call for high school and/or job-specific training, such as industrial butchers, long-haul truck drivers, and food and beverage servers.)",
+    "labour": "Labour jobs (that usually give on-the-job training, such as fruit pickers, cleaning staff, and oil field workers.)",
+    "noWork": "Didn't work"
+  },
+  "grossIncome": {
+    "$": "What is your best estimate of your annual total personal income, before taxes and deductions, from all sources?",
+    "lt20K": "< $20,000",
+    "20To39K": "$20,000 to $39,999",
+    "40To59K": "$40,000 to $59,999",
+    "60To79K": "$60,000 to $79,999",
+    "80To99K": "$80,000 to $99,999",
+    "100To119K": "$100,000 to $119,999",
+    "mt120K": "$120,000 or more"
+  },
+  "maritalStatus": {
+    "$": "What is your marital status?",
+    "married": "Married",
+    "commonLaw": "Living common-law",
+    "widowed": "Widowed",
+    "separated": "Separated",
+    "divorced": "Divorced",
+    "singleNeverMarried": "Single, never married"
+  },
+  "disabled": {
+    "$": "Do you have a disability?",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

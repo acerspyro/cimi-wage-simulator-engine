@@ -7,26 +7,30 @@ import { applyFormRules } from "@/datasets/rules/apply.rules";
 import { LocaleUtils } from "@/utils/locale-utils";
 import { useContext } from "react";
 import { SimulationFormContext } from "../SimulationForm/SimulationForm.context";
-import { en } from "./i18n/en.i18n";
-import { fr } from "./i18n/fr.i18n";
 import "./SimulationFieldset.scss";
 import { DropdownSelectorDisplay } from "./stateless/DropdownSelectorDisplay";
+import { I18nStrings } from "@/datasets/models/i18nStrings.model";
 
 interface IProp {
   sourceDataset: Dataset.Source;
 }
 
-export const SimulationFieldset = ({ sourceDataset }: IProp) => {
+export function SimulationFieldset({ sourceDataset }: IProp) {
   /**
    * SETUP
    */
-
-  const labels = new LocaleUtils(en, fr).getLabels();
 
   const formMeta = useContext(SimulationFormContext).formMeta;
   const setFormMeta = useContext(SimulationFormContext).setFormMeta;
   const pivotedData = useContext(SimulationFormContext).pivotedData;
   const setPivotedData = useContext(SimulationFormContext).setPivotedData;
+
+  const datasetLabels = new LocaleUtils(
+    ...LocaleUtils.geti18nStringsForDataset(
+      sourceDataset.configuration.id,
+      "questions"
+    )
+  ).getLabels();
 
   /**
    * HANDLERS
@@ -76,14 +80,14 @@ export const SimulationFieldset = ({ sourceDataset }: IProp) => {
   formMeta.forEach((selectMeta) => {
     dropdownSelectors.push(
       <DropdownSelectorDisplay
-        meta={selectMeta as SelectMeta<keyof typeof en.question>}
+        meta={selectMeta}
         index={i++}
         key={selectMeta.idKey}
-        labels={labels}
+        labels={datasetLabels as I18nStrings}
         onChange={handleChange}
       ></DropdownSelectorDisplay>
     );
   });
 
   return <div className="questions-wrapper">{dropdownSelectors}</div>;
-};
+}

@@ -1,11 +1,11 @@
 import { SelectMeta, OptionMeta, OptgroupMeta } from "@/datasets/models";
-import { en } from "../i18n/en.i18n";
+import { I18nStrings } from "@/datasets/models/i18nStrings.model";
 import { DropdownGroupDisplay } from "../stateless/DropdownGroupDisplay";
 import { DropdownOptionDisplay } from "../stateless/DropdownOptionDisplay";
 
 interface IProp {
   meta: SelectMeta;
-  labels: typeof en;
+  labels: I18nStrings;
 }
 
 export function displayGroupedOptions({ meta, labels }: IProp) {
@@ -13,22 +13,24 @@ export function displayGroupedOptions({ meta, labels }: IProp) {
     optionOrOptgroup: OptionMeta | OptgroupMeta,
     walkedKey: string
   ) => {
+    const pathKey = `${walkedKey}.${optionOrOptgroup.idKey}`;
+
     if (optionOrOptgroup instanceof OptionMeta) {
       return (
         <DropdownOptionDisplay
           key={`${optionOrOptgroup.idKey}`}
-          labelKey={`${walkedKey}.${optionOrOptgroup.idKey}`}
-          labels={labels.choice}
+          pathKey={pathKey}
+          labels={labels}
         ></DropdownOptionDisplay>
       );
     } else {
       return (
         <DropdownGroupDisplay
           key={`${optionOrOptgroup.idKey}`}
-          labelKey={`${walkedKey}.${optionOrOptgroup.idKey}`}
+          pathKey={pathKey}
           labels={labels}
           options={Array.from(optionOrOptgroup.values()).map((optgroup) =>
-            walk(optgroup, `${walkedKey}.${optionOrOptgroup.idKey}`)
+            walk(optgroup, pathKey)
           )}
         ></DropdownGroupDisplay>
       );

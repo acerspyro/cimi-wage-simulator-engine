@@ -1,12 +1,12 @@
-import rawData from "../../config/wages-by-demographic.json";
+import rawData from "../../generator/output/discrimination.json";
 import { Dataset } from "./models/configuration.model";
-import { ElementState } from "./models/logic.model";
+import { ElementState as ElementState } from "./models/logic.model";
 
 export default {
   kind: "SOURCE",
   configuration: {
-    formId: "wagesByDemographic",
-    weightCount: 3,
+    id: "discrimination",
+    weightCount: 2,
     cmaPosition: 4,
     conditions: {
       logic: {

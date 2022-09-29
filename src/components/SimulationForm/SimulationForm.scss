@@ -1,11 +1,16 @@
+/** @todo cleanup */
+
 .form-wrapper {
   position: relative;
   overflow: hidden;
+}
+
+.fieldset-wrapper {
+  padding: 1rem 2rem 2rem 2rem;
 
   form {
     display: block;
     position: relative;
-    padding: 1rem 2rem 2rem 2rem;
 
     &.is-blurred {
       pointer-events: none;

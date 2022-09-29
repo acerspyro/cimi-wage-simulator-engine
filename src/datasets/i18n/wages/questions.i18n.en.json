@@ -1,0 +1,182 @@
+{
+  "cma": {
+    "$": "What city (CMA) do you currently reside in?",
+    "abbotsfordMission": "Abbotsford - Mission",
+    "barrie": "Barrie",
+    "belleville": "Belleville",
+    "brantford": "Brantford",
+    "calgary": "Calgary",
+    "edmonton": "Edmonton",
+    "greaterSudbury": "Greater Sudbury",
+    "guelph": "Guelph",
+    "halifax": "Halifax",
+    "hamilton": "Hamilton",
+    "kelowna": "Kelowna",
+    "kingston": "Kingston",
+    "kitchenerCambridgeWaterloo": "Kitchener - Cambridge - Waterloo",
+    "lethbridge": "Lethbridge",
+    "london": "London",
+    "moncton": "Moncton",
+    "montreal": "Montreal",
+    "oshawa": "Oshawa",
+    "ottawaGatineau": "Ottawa - Gatineau",
+    "peterborough": "Peterborough",
+    "quebec": "Quebec City",
+    "regina": "Regina",
+    "saguenay": "Saguenay",
+    "saintJohn": "Saint John",
+    "saskatoon": "Saskatoon",
+    "sherbrooke": "Sherbrooke",
+    "stCatharinesNiagara": "St. Catharines - Niagara",
+    "stJohns": "St. John's",
+    "thunderBay": "Thunder Bay",
+    "toronto": "Toronto",
+    "troisRivieres": "Trois-Rivières",
+    "vancouver": "Vancouver",
+    "victoria": "Victoria",
+    "windsor": "Windsor",
+    "winnipeg": "Winnipeg"
+  },
+  "bornInCanada": {
+    "$": "Were you born in Canada?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "permanentResident": {
+    "$": "How long ago did you land in Canada?",
+    "recent": "≤ 5 years",
+    "established": "> 5 years"
+  },
+  "arrivalAge": {
+    "$": "How old were you when you landed in Canada?",
+    "child": "0-11 years old",
+    "adult": "12 years old or older"
+  },
+  "ethnicGroup": {
+    "$": "Are you White, Indigenous or a member of a racialized community? Please select the group that you identify with most.",
+    "white": "White",
+    "racialized": "Racialized group such as Black, Chinese, Arab, etc.",
+    "indigenous": "Indigenous Peoples"
+  },
+  "birthSex": {
+    "$": "What is your sex at birth?",
+    "female": "Female",
+    "male": "Male"
+  },
+  "spokenLanguage": {
+    "$": "Which official languages can you conduct a conversation in?",
+    "en": "English",
+    "fr": "French",
+    "both": "Both English and French",
+    "neither": "Neither English nor French"
+  },
+  "education": {
+    "$": "What is the highest level of education that you have completed?",
+    "noDegree": "Less than high school diploma or its equivalent",
+    "highSchool": "Secondary (high) school diploma or equivalency certificate",
+    "trades": "Apprenticeship or trades certificate or diploma",
+    "college": "College, CEGEP or other non-university certificate or diploma",
+    "belowBachelors": "University certificate or diploma below bachelor level",
+    "bachelors": "Bachelor's degree",
+    "aboveBachelors": "University certificate or diploma above bachelor level",
+    "medicine": "Degree in medicine, dentistry, veterinary medicine or optometry",
+    "masters": "Master's degree",
+    "doctorate": "Earned doctorate"
+  },
+  "age": {
+    "$": "How old are you?",
+    "18To19": "18 - 19",
+    "20To24": "20 - 24",
+    "25To29": "25 - 29",
+    "30To34": "30 - 34",
+    "35To39": "35 - 39",
+    "40To44": "40 - 44",
+    "45To49": "45 - 49",
+    "50To54": "50 - 54",
+    "55To59": "55 - 59",
+    "60To64": "60 - 64"
+  },
+  "occupation": {
+    "$": "What is your occupation?",
+    "managementOccupations": {
+      "$": "Management occupations",
+      "seniorManagementOccupations": "Senior management occupations",
+      "specializedMiddleManagementOccupations": "Specialized middle management occupations",
+      "middleManagementOccupationsInRetailAndWholesaleTradeAndCustomerServices": "Middle management occupations in retail and wholesale trade and customer services",
+      "middleManagementOccupationsInTradesTransportationProductionAndUtilities": "Middle management occupations in trades, transportation, production and utilities"
+    },
+    "businessFinanceAndAdministrationOccupations": {
+      "$": "Business, finance and administration occupations",
+      "professionalOccupationsInBusinessAndFinance": "Professional occupations in business and finance",
+      "administrativeAndFinancialSupervisorsAndAdministrativeOccupations": "Administrative and financial supervisors and administrative occupations",
+      "financeInsuranceAndRelatedBusinessAdministrativeOccupations": "Finance, insurance and related business administrative occupations",
+      "officeSupportOccupations": "Office support occupations",
+      "distributionTrackingAndSchedulingCoOrdinationOccupations": "Distribution, tracking and scheduling co-ordination occupations"
+    },
+    "naturalAndAppliedSciencesAndRelatedOccupations": {
+      "$": "Natural and applied sciences and related occupations",
+      "professionalOccupationsInNaturalAndAppliedSciences": "Professional occupations in natural and applied sciences",
+      "technicalOccupationsRelatedToNaturalAndAppliedSciences": "Technical occupations related to natural and applied sciences"
+    },
+    "healthOccupations": {
+      "$": "Health occupations",
+      "professionalOccupationsInNursing": "Professional occupations in nursing",
+      "professionalOccupationsInHealthExceptNursing": "Professional occupations in health (except nursing)",
+      "technicalOccupationsInHealth": "Technical occupations in health",
+      "assistingOccupationsInSupportOfHealthServices": "Assisting occupations in support of health services"
+    },
+    "occupationsInEducationLawAndSocialCommunityAndGovernmentServices": {
+      "$": "Occupations in education, law and social, community and government services",
+      "professionalOccupationsInEducationServices": "Professional occupations in education services",
+      "professionalOccupationsInLawAndSocialCommunityAndGovernmentServices": "Professional occupations in law and social, community and government services",
+      "paraprofessionalOccupationsInLegalSocialCommunityAndEducationServices": "Paraprofessional occupations in legal, social, community and education services",
+      "occupationsInFrontLinePublicProtectionServices": "Occupations in front-line public protection services",
+      "careProvidersAndEducationalLegalAndPublicProtectionSupportOccupations": "Care providers and educational, legal and public protection support occupations"
+    },
+    "occupationsInArtCultureRecreationAndSport": {
+      "$": "Occupations in art, culture, recreation and sport",
+      "professionalOccupationsInArtAndCulture": "Professional occupations in art and culture",
+      "technicalOccupationsInArtCultureRecreationAndSport": "Technical occupations in art, culture, recreation and sport"
+    },
+    "salesAndServiceOccupations": {
+      "$": "Sales and service occupations",
+      "retailSalesSupervisorsAndSpecializedSalesOccupations": "Retail sales supervisors and specialized sales occupations",
+      "serviceSupervisorsAndSpecializedServiceOccupations": "Service supervisors and specialized service occupations",
+      "salesRepresentativesAndSalespersonsWholesaleAndRetailTrade": "Sales representatives and salespersons - Wholesale and retail trade",
+      "serviceRepresentativesAndOtherCustomerAndPersonalServicesOccupations": "Service representatives and other customer and personal services occupations",
+      "salesSupportOccupations": "Sales support occupations",
+      "serviceSupportAndOtherServiceOccupationsNEC": "Service support and other service occupations, n.e.c."
+    },
+    "tradesTransportAndEquipmentOperatorsAndRelatedOccupations": {
+      "$": "Trades, transport and equipment operators and related occupations",
+      "industrialElectricalAndConstructionTrades": "Industrial, electrical and construction trades",
+      "maintenanceAndEquipmentOperationTrades": "Maintenance and equipment operation trades",
+      "otherInstallersRepairersAndServicersAndMaterialHandlers": "Other installers, repairers and servicers and material handlers",
+      "transportAndHeavyEquipmentOperationAndRelatedMaintenanceOccupations": "Transport and heavy equipment operation and related maintenance occupations",
+      "tradesHelpersConstructionLabourersAndRelatedOccupations": "Trades helpers, construction labourers and related occupations"
+    },
+    "naturalResourcesAgricultureAndRelatedProductionOccupations": {
+      "$": "Natural resources, agriculture and related production occupations",
+      "supervisorsAndTechnicalOccupationsInNaturalResourcesAgricultureAndRelatedProduction": "Supervisors and technical occupations in natural resources, agriculture and related production",
+      "workersInNaturalResourcesAgricultureAndRelatedProduction": "Workers in natural resources, agriculture and related production",
+      "harvestingLandscapingAndNaturalResourcesLabourers": "Harvesting, landscaping and natural resources labourers"
+    },
+    "occupationsInManufacturingAndUtilities": {
+      "$": "Occupations in manufacturing and utilities",
+      "processingManufacturingAndUtilitiesSupervisorsAndCentralControlOperators": "Processing, manufacturing and utilities supervisors and central control operators",
+      "processingAndManufacturingMachineOperatorsAndRelatedProductionWorkers": "Processing and manufacturing machine operators and related production workers",
+      "assemblersInManufacturing": "Assemblers in manufacturing",
+      "labourersInProcessingManufacturingAndUtilities": "Labourers in processing, manufacturing and utilities"
+    }
+  },
+  "employment": {
+    "$": "If you are currently working, are you a…?",
+    "partTime": "Part-time employee",
+    "fullTime": "Full-time employee"
+  },
+  "changedNeighbourhoods": {
+    "$": "Have you changed neighborhoods in the past 5 years?",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "cma": {
+    "$": "Dans quelle ville (RMR) résidez-vous actuellement\u00a0?",
+    "abbotsfordMission": "Abbotsford - Mission",
+    "barrie": "Barrie",
+    "belleville": "Belleville",
+    "brantford": "Brantford",
+    "calgary": "Calgary",
+    "edmonton": "Edmonton",
+    "greaterSudbury": "Grand Sudbury",
+    "guelph": "Guelph",
+    "halifax": "Halifax",
+    "hamilton": "Hamilton",
+    "kelowna": "Kelowna",
+    "kingston": "Kingston",
+    "kitchenerCambridgeWaterloo": "Kitchener - Cambridge - Waterloo",
+    "lethbridge": "Lethbridge",
+    "london": "London",
+    "moncton": "Moncton",
+    "montreal": "Montréal",
+    "oshawa": "Oshawa",
+    "ottawaGatineau": "Ottawa - Gatineau",
+    "peterborough": "Peterborough",
+    "quebec": "Ville de Québec",
+    "regina": "Regina",
+    "saguenay": "Saguenay",
+    "saintJohn": "Saint John",
+    "saskatoon": "Saskatoon",
+    "sherbrooke": "Sherbrooke",
+    "stCatharinesNiagara": "St. Catharines - Niagara",
+    "stJohns": "St. John's",
+    "thunderBay": "Thunder Bay",
+    "toronto": "Toronto",
+    "troisRivieres": "Trois-Rivières",
+    "vancouver": "Vancouver",
+    "victoria": "Victoria",
+    "windsor": "Windsor",
+    "winnipeg": "Winnipeg"
+  },
+  "bornInCanada": {
+    "$": "Êtes-vous né au Canada\u00a0?",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "permanentResident": {
+    "$": "Depuis combien de temps êtes-vous arrivé au Canada\u00a0?",
+    "recent": "≤ 5 années",
+    "established": "> 5 années"
+  },
+  "arrivalAge": {
+    "$": "Quel âge aviez-vous quand vous êtes arrivé au Canada\u00a0?",
+    "child": "0-11 ans",
+    "adult": "12 ans et plus"
+  },
+  "ethnicGroup": {
+    "$": "Êtes-vous Blanc, Autochtone, ou membre d’une communauté racisée\u00a0?",
+    "white": "Blanc",
+    "racialized": "Groupe racisé tel que Noir, Chinois, Arabe, etc.",
+    "indigenous": "Peuples Autochtones"
+  },
+  "birthSex": {
+    "$": "Quel est votre sexe à la naissance\u00a0?",
+    "female": "Femme",
+    "male": "Homme"
+  },
+  "spokenLanguage": {
+    "$": "Quelles sont les langues officielles dans lesquelles vous pouvez mener une conversation\u00a0?",
+    "en": "Anglais",
+    "fr": "Français",
+    "both": "Anglais et français",
+    "neither": "Ni l'anglais ni le français"
+  },
+  "education": {
+    "$": "Quel est le plus haut niveau d'éducation que vous avez atteint\u00a0?",
+    "noDegree": "Moins que diplôme secondaire ou équivalent",
+    "highSchool": "Diplôme secondaire ou équivalent",
+    "trades": "Certificat ou diplôme d’apprenti ou d’une école de métier",
+    "college": "Certificat ou diplôme d'un collège, d'un cégep ou d'un autre établissement non universitaire",
+    "belowBachelors": "Certificat ou diplôme universitaire inférieur au baccalauréat",
+    "bachelors": "Baccalauréat",
+    "aboveBachelors": "Certificat ou diplôme universitaire supérieur au baccalauréat",
+    "medicine": "Diplôme en médecine, en médecine dentaire, en médecine vétérinaire ou en optométrie de la personne",
+    "masters": "Maîtrise",
+    "doctorate": "Doctorat acquis"
+  },
+  "age": {
+    "$": "Quel âge avez-vous\u00a0?",
+    "18To19": "18 - 19",
+    "20To24": "20 - 24",
+    "25To29": "25 - 29",
+    "30To34": "30 - 34",
+    "35To39": "35 - 39",
+    "40To44": "40 - 44",
+    "45To49": "45 - 49",
+    "50To54": "50 - 54",
+    "55To59": "55 - 59",
+    "60To64": "60 - 64"
+  },
+  "occupation": {
+    "$": "Quelle est votre occupation\u00a0?",
+    "managementOccupations": {
+      "$": "Gestion",
+      "seniorManagementOccupations": "Cadres supérieurs",
+      "specializedMiddleManagementOccupations": "Cadres intermédiaires spécialisés",
+      "middleManagementOccupationsInRetailAndWholesaleTradeAndCustomerServices": "Cadres intermédiaires dans le commerce de détail, de gros et des services à la clientèle",
+      "middleManagementOccupationsInTradesTransportationProductionAndUtilities": "Cadres intermédiaires des métiers, des transports, de la production et des services d'utilité publique"
+    },
+    "businessFinanceAndAdministrationOccupations": {
+      "$": "Affaires, finance et administration",
+      "professionalOccupationsInBusinessAndFinance": "Personnel professionnel en gestion des affaires et en finance",
+      "administrativeAndFinancialSupervisorsAndAdministrativeOccupations": "Personnel en finance, assurance et personnel assimilé en administration des affaires",
+      "financeInsuranceAndRelatedBusinessAdministrativeOccupations": "TBD",
+      "officeSupportOccupations": " Personnel de soutien de bureau",
+      "distributionTrackingAndSchedulingCoOrdinationOccupations": " Personnel de coordination de la distribution, du suivi et des horaires"
+    },
+    "naturalAndAppliedSciencesAndRelatedOccupations": {
+      "$": "Sciences naturelles et appliquées et domaines apparentés",
+      "professionalOccupationsInNaturalAndAppliedSciences": "Personnel professionnel des sciences naturelles et appliquées",
+      "technicalOccupationsRelatedToNaturalAndAppliedSciences": " Personnel technique assimilé aux sciences naturelles et appliquées"
+    },
+    "healthOccupations": {
+      "$": "Secteur de la santé",
+      "professionalOccupationsInNursing": "Personnel professionnel en soins infirmiers",
+      "professionalOccupationsInHealthExceptNursing": "Personnel professionnel des soins de santé (sauf soins infirmiers)",
+      "technicalOccupationsInHealth": "Personnel technique des soins de santé",
+      "assistingOccupationsInSupportOfHealthServices": "Personnel de soutien des services de santé"
+    },
+    "occupationsInEducationLawAndSocialCommunityAndGovernmentServices": {
+      "$": "Enseignement, droit et services sociaux, communautaires et gouvernementaux",
+      "professionalOccupationsInEducationServices": "Personnel professionnel en services d'enseignement",
+      "professionalOccupationsInLawAndSocialCommunityAndGovernmentServices": "Personnel professionnel du droit et des services gouvernementaux, sociaux et communautaires",
+      "paraprofessionalOccupationsInLegalSocialCommunityAndEducationServices": "Personnel paraprofessionnel des services juridiques, sociaux, communautaires et de l'enseignement",
+      "occupationsInFrontLinePublicProtectionServices": "Personnel des services de protection publique de première ligne",
+      "careProvidersAndEducationalLegalAndPublicProtectionSupportOccupations": "Dispensateurs de soins et personnel de soutien en enseignement, en droit et en protection publique"
+    },
+    "occupationsInArtCultureRecreationAndSport": {
+      "$": "Arts, culture, sports et loisirs",
+      "professionalOccupationsInArtAndCulture": "Personnel professionnel des arts et de la culture",
+      "technicalOccupationsInArtCultureRecreationAndSport": "Personnel technique des arts, de la culture, des sports et des loisirs"
+    },
+    "salesAndServiceOccupations": {
+      "$": "Vente et services",
+      "retailSalesSupervisorsAndSpecializedSalesOccupations": "Personnel de supervision des ventes au détail et personnel des ventes spécialisées",
+      "serviceSupervisorsAndSpecializedServiceOccupations": "Personnel de supervision en services et personnel de services spécialisés",
+      "salesRepresentativesAndSalespersonsWholesaleAndRetailTrade": "Représentants des ventes et vendeurs - commerce de gros et de détail",
+      "serviceRepresentativesAndOtherCustomerAndPersonalServicesOccupations": "Représentants de services et autre personnel de services à la clientèle et personnalisés",
+      "salesSupportOccupations": " Personnel de soutien des ventes",
+      "serviceSupportAndOtherServiceOccupationsNEC": "Personnel de soutien en service et autre personnel de service, n.c.a."
+    },
+    "tradesTransportAndEquipmentOperatorsAndRelatedOccupations": {
+      "$": "Métiers, transport, machinerie et domaines apparentés",
+      "industrialElectricalAndConstructionTrades": "Personnel des métiers de l'électricité, de la construction et des industries",
+      "maintenanceAndEquipmentOperationTrades": "Personnel des métiers d'entretien et d'opération d'équipement",
+      "otherInstallersRepairersAndServicersAndMaterialHandlers": "Personnel d'installation, de réparation et d'entretien et manutentionnaires",
+      "transportAndHeavyEquipmentOperationAndRelatedMaintenanceOccupations": "Personnel en opération d'équipement de transport et de machinerie lourde et autre personnel assimilé à l'entretien",
+      "tradesHelpersConstructionLabourersAndRelatedOccupations": "Personnel de soutien des métiers, manoeuvres et aides d'entreprise en construction et autre personnel assimilé"
+    },
+    "naturalResourcesAgricultureAndRelatedProductionOccupations": {
+      "$": "Ressources naturelles, agriculture et production connexe",
+      "supervisorsAndTechnicalOccupationsInNaturalResourcesAgricultureAndRelatedProduction": "Superviseurs et métiers techniques dans les ressources naturelles, l'agriculture et la production connexe",
+      "workersInNaturalResourcesAgricultureAndRelatedProduction": "Personnel en ressources naturelles, en agriculture et en production connexe",
+      "harvestingLandscapingAndNaturalResourcesLabourers": "Manoeuvres à la récolte, en aménagement paysager et en ressources naturelles"
+    },
+    "occupationsInManufacturingAndUtilities": {
+      "$": "Fabrication et services d'utilité publique",
+      "processingManufacturingAndUtilitiesSupervisorsAndCentralControlOperators": "Personnel de supervision dans la transformation, la fabrication et les services d'utilité publique et opérateurs de poste central de contrôle",
+      "processingAndManufacturingMachineOperatorsAndRelatedProductionWorkers": "Opérateurs de machinerie reliée à la transformation et à la fabrication et autre personnel assimilé",
+      "assemblersInManufacturing": "Monteurs dans la fabrication",
+      "labourersInProcessingManufacturingAndUtilities": "Manoeuvres dans la transformation, la fabrication et les services d'utilité publique"
+    }
+  },
+  "employment": {
+    "$": "Si vous êtes actuellement employé, êtes-vous employé en tant que…\u00a0?",
+    "partTime": "Employé à temps partiel",
+    "fullTime": "Employé à temps plein"
+  },
+  "changedNeighbourhoods": {
+    "$": "Avez-vous changé de quartier au cours des 5 dernières années\u00a0?",
+    "yes": "Oui",
+    "no": "Non"
+  }
+}

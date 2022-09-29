@@ -32,6 +32,7 @@ export class SelectMeta<LabelType = string> extends Map<
     return this._labelKey;
   }
 
+  /** @unused */
   public getSelectionObject() {
     try {
       return this.getFromPath(this.selection);

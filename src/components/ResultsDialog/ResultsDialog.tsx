@@ -6,8 +6,8 @@ import { SimulationFormContext } from "../SimulationForm/SimulationForm.context"
 import { en } from "./i18n/en.i18n";
 import { fr } from "./i18n/fr.i18n";
 import "./ResultsDialog.scss";
-import { DiscriminationByDemographicResults } from "./stateless/DiscriminationByDemographicResults";
-import { WagesByDemographicResults } from "./stateless/WagesByDemographicResults";
+import { DiscriminationResults } from "./stateless/DiscriminationResults";
+import { WagesResults } from "./stateless/WagesResults";
 
 interface IProp {
   configuration: Dataset.Pivoted["configuration"];
@@ -44,22 +44,22 @@ export const ResultsDialog = ({ configuration, onHideResults }: IProp) => {
       compiledWeights.push(compileData(i, formMeta));
     }
 
-    switch (configuration.formId) {
-      case "discriminationByDemographic": {
+    switch (configuration.id) {
+      case "discrimination": {
         return (
-          <DiscriminationByDemographicResults
+          <DiscriminationResults
             calculatedWeights={compiledWeights}
-            labels={labels.datatype.discriminationByDemographic}
-          ></DiscriminationByDemographicResults>
+            labels={labels.datatype.discrimination}
+          ></DiscriminationResults>
         );
       }
 
-      case "wagesByDemographic": {
+      case "wages": {
         return (
-          <WagesByDemographicResults
+          <WagesResults
             calculatedWeights={compiledWeights}
-            labels={labels.datatype.wagesByDemographic}
-          ></WagesByDemographicResults>
+            labels={labels.datatype.wages}
+          ></WagesResults>
         );
       }
 

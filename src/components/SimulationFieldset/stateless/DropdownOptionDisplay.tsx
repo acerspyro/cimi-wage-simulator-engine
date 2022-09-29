@@ -1,13 +1,18 @@
+import { I18nStrings } from "@/datasets/models/i18nStrings.model";
+import { LocaleUtils } from "@/utils/locale-utils";
 import _ from "lodash";
-import { en } from "../i18n/en.i18n";
 
 interface IProp {
-  labelKey: string;
-  labels: typeof en.choice;
+  pathKey: string;
+  labels: I18nStrings;
 }
 
-export const DropdownOptionDisplay = (props: IProp) => {
-  const label = _.get(props.labels, props.labelKey, props.labelKey);
+export const DropdownOptionDisplay = ({ pathKey, labels }: IProp) => {
+  /**
+   * @fixme Removes the first part of the string as it represents the dropdown key.
+   * Otherwise, this causes the linkage between dropdown and selection to break.
+   */
+  const value = pathKey.split(".").splice(1).join(".");
 
-  return <option value={props.labelKey.split(".")[1]}>{label}</option>;
+  return <option value={value}>{LocaleUtils.i18n(labels, pathKey)}</option>;
 };

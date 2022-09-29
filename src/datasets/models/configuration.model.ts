@@ -2,7 +2,7 @@ import { ElementState, JSONLogic } from "./logic.model";
 
 type Configuration = {
   /** Name of the form */
-  formId: string;
+  id: string;
 
   /** Position of the CMA question on the form */
   cmaPosition: number;
