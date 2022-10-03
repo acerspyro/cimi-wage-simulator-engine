@@ -89,6 +89,11 @@
     }
   }
 
+  .result-error {
+    color: #666666;
+    font-style: italic;
+  }
+
   .content:not(.your-wage) {
     @include result-content;
   }

@@ -141,6 +141,19 @@ function getCompiledWeights(formMeta: FormMeta) {
   return results;
 }
 
+function checkBounds(results: TResults, resultKey: ResultKey) {
+  return (
+    Math.min(
+      results[resultKey][WeightKey.Lower],
+      results[resultKey][WeightKey.Upper]
+    ) >= MIN_SAMPLE_SIZE &&
+    Math.max(
+      results[resultKey][WeightKey.Lower],
+      results[resultKey][WeightKey.Upper]
+    )
+  );
+}
+
 /**
  * I presume we want to use Math.abs() here to avoid negative values...
  * @param labels
@@ -167,45 +180,66 @@ function displayBornInCanada(
 
   return (
     <Card.Content>
-      <h2>{labels.expected.wage}&hellip;</h2>
-      <Content className="your-wage">
-        <span>
-          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
-        </span>
-        &ensp;{labels.and}&ensp;
-        <span>
-          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
-        </span>
-      </Content>
+      {checkBounds(results, ResultKey.CanadianBorn) ? (
+        <div>
+          <h2>{labels.expected.wage}&hellip;</h2>
+          <Content className="your-wage">
+            <span>
+              {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
+            </span>
+            &ensp;{labels.and}&ensp;
+            <span>
+              {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
+            </span>
+          </Content>
+        </div>
+      ) : (
+        <Content className="result-error">{labels.expected.error}</Content>
+      )}
       <hr />
-      <Content>
-        {labels.establishedImmigrantCounterpart.wage}&nbsp;
-        <span>
-          {weightToCurrencyAmount(
-            results.childEstablishedImmigrant[WeightKey.Lower]
-          )}
-        </span>
-        &nbsp;{labels.and}&nbsp;
-        <span>
-          {weightToCurrencyAmount(
-            results.childEstablishedImmigrant[WeightKey.Upper]
-          )}
-        </span>
-        ,&nbsp;{labels.gap}&nbsp;
-        <strong>{weightToCurrencyAmount(childEstablishedImmigrantGap)}</strong>.
-      </Content>
-      <Content>
-        {labels.recentImmigrantCounterpart.wage}&nbsp;
-        <span>
-          {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Lower])}
-        </span>
-        &nbsp;{labels.and}&nbsp;
-        <span>
-          {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Upper])}
-        </span>
-        ,&nbsp;{labels.gap}&nbsp;
-        <strong>{weightToCurrencyAmount(recentImmigrantGap)}</strong>.
-      </Content>
+      {checkBounds(results, ResultKey.ChildEstablishedImmigrant) ? (
+        <Content>
+          {labels.establishedImmigrantCounterpart.wage}&nbsp;
+          <span>
+            {weightToCurrencyAmount(
+              results.childEstablishedImmigrant[WeightKey.Lower]
+            )}
+          </span>
+          &nbsp;{labels.and}&nbsp;
+          <span>
+            {weightToCurrencyAmount(
+              results.childEstablishedImmigrant[WeightKey.Upper]
+            )}
+          </span>
+          ,&nbsp;{labels.gap}&nbsp;
+          <strong>
+            {weightToCurrencyAmount(childEstablishedImmigrantGap)}
+          </strong>
+          .
+        </Content>
+      ) : (
+        <Content className="result-error">
+          {labels.establishedImmigrantCounterpart.error}
+        </Content>
+      )}
+      {checkBounds(results, ResultKey.RecentImmigrant) ? (
+        <Content>
+          {labels.recentImmigrantCounterpart.wage}&nbsp;
+          <span>
+            {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Lower])}
+          </span>
+          &nbsp;{labels.and}&nbsp;
+          <span>
+            {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Upper])}
+          </span>
+          ,&nbsp;{labels.gap}&nbsp;
+          <strong>{weightToCurrencyAmount(recentImmigrantGap)}</strong>.
+        </Content>
+      ) : (
+        <Content className="result-error">
+          {labels.recentImmigrantCounterpart.error}
+        </Content>
+      )}
     </Card.Content>
   );
 }
@@ -234,29 +268,41 @@ function displayImmigratedToCanada(
 
   return (
     <Card.Content>
-      <h2>{labels.expected.wage}&hellip;</h2>
-      <Content className="your-wage">
-        <span>
-          {weightToCurrencyAmount(results[resultKey][WeightKey.Lower])}
-        </span>
-        &ensp;{labels.and}&ensp;
-        <span>
-          {weightToCurrencyAmount(results[resultKey][WeightKey.Upper])}
-        </span>
-      </Content>
+      {checkBounds(results, resultKey) ? (
+        <div>
+          <h2>{labels.expected.wage}&hellip;</h2>
+          <Content className="your-wage">
+            <span>
+              {weightToCurrencyAmount(results[resultKey][WeightKey.Lower])}
+            </span>
+            &ensp;{labels.and}&ensp;
+            <span>
+              {weightToCurrencyAmount(results[resultKey][WeightKey.Upper])}
+            </span>
+          </Content>{" "}
+        </div>
+      ) : (
+        <Content className="result-error">{labels.expected.error}</Content>
+      )}
       <hr />
-      <Content>
-        {labels.canadianBornCounterpart.wage}&nbsp;
-        <span>
-          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
-        </span>
-        &nbsp;{labels.and}&nbsp;
-        <span>
-          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
-        </span>
-        ,&nbsp;{labels.gap}&nbsp;
-        <strong>{weightToCurrencyAmount(wageGap)}</strong>.
-      </Content>
+      {checkBounds(results, resultKey) ? (
+        <Content>
+          {labels.canadianBornCounterpart.wage}&nbsp;
+          <span>
+            {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
+          </span>
+          &nbsp;{labels.and}&nbsp;
+          <span>
+            {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
+          </span>
+          ,&nbsp;{labels.gap}&nbsp;
+          <strong>{weightToCurrencyAmount(wageGap)}</strong>.
+        </Content>
+      ) : (
+        <Content className="result-error">
+          {labels.canadianBornCounterpart.error}
+        </Content>
+      )}
     </Card.Content>
   );
 }
