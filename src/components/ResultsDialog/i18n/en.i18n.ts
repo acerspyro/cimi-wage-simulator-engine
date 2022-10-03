@@ -9,10 +9,27 @@ export const en = {
         `You were <span>${value}%</span> likely to report experiencing discrimination or being treated unfairly.`,
     },
     wages: {
-      headerLabel: "Your expected yearly wage is\u2026",
-      scoreLabel: (lowValue: string, highValue: string) =>
-        `However, your yearly wage could be between <span>${lowValue}</span> and <span>${highValue}</span>.`,
-      sampleSizeTooSmall: "The sample size is too small to simulate wages.",
+      and: "and",
+      gap: "a gap of",
+      expected: {
+        wage: "Your expected wage is between",
+        error: "The sample size is too small to simulate your expected wage.",
+      },
+      canadianBornCounterpart: {
+        wage: "Your canadian-born counterpart's wage is between",
+        error:
+          "The sample size is too small to simulate your canadian-born counterpart's wage.",
+      },
+      establishedImmigrantCounterpart: {
+        wage: "The expected wage of an established immigrant is between",
+        error:
+          "The sample size is too small to simulate the expected wage of an established immigrant.",
+      },
+      recentImmigrantCounterpart: {
+        wage: "The expected wage of a recent immigrant is between",
+        error:
+          "The sample size is too small to simulate the expected wage of a recent immigrant.",
+      },
     },
   },
   closePopup: "Close",

@@ -34,23 +34,21 @@
 }
 
 @mixin result-content {
-  .content {
-    font-size: 1.125rem;
-    line-height: 1.3;
-    padding-bottom: 0.125rem;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  padding-bottom: 0.125rem;
 
-    span {
-      font-family: $family-secondary;
-      padding: 0em 0.5em;
-      font-weight: 900;
-      color: #fff;
-      background-color: #f03250;
-      border-radius: 2px;
-    }
+  span {
+    font-family: $family-secondary;
+    padding: 0em 0.5em;
+    font-weight: 900;
+    color: #fff;
+    background-color: #f03250;
+    border-radius: 2px;
   }
 }
 
-.card.discrimination-by-demographic-results {
+.card.discrimination-results {
   max-width: 30rem;
 
   &:not(:last-of-type) {
@@ -63,10 +61,12 @@
     padding-bottom: 0.25rem;
   }
 
-  @include result-content;
+  .content {
+    @include result-content;
+  }
 }
 
-.card.wages-by-demographic-results {
+.card.wages-results {
   max-width: 30rem;
   text-align: center;
 
@@ -76,12 +76,20 @@
     padding-bottom: 0.25rem;
   }
 
-  .exact-wage {
-    font-size: 2rem;
-    font-weight: 900;
-    color: #f03250;
-    padding: 0.5rem 0rem;
+  .content.your-wage {
+    font-size: 1.375rem;
+    font-weight: 300;
+    padding-top: 0.5rem;
+
+    span {
+      font-size: 2rem;
+      color: #f03250;
+      font-weight: 900;
+      vertical-align: middle;
+    }
   }
 
-  @include result-content;
+  .content:not(.your-wage) {
+    @include result-content;
+  }
 }

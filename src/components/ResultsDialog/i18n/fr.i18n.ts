@@ -11,11 +11,28 @@ export const fr = {
         `Vous étiez <span>${value}\u00a0%</span> susceptible de déclarer avoir été victime de discrimination ou d'être traité injustement.`,
     },
     wages: {
-      headerLabel: "Votre salaire annuel escompté est\u2026",
-      scoreLabel: (lowValue: string, highValue: string) =>
-        `Cependant, votre salaire annuel pourrait se situer entre <span>${lowValue}</span> et <span>${highValue}</span>.`,
-      sampleSizeTooSmall:
-        "La taille de l’échantillon est trop petite pour simuler les salaires.",
+      and: "et",
+      gap: "un écart de",
+      expected: {
+        wage: "Votre salaire escompté est entre",
+        error:
+          "La taille de l’échantillon est trop petite pour simuler votre salaire escompté.",
+      },
+      canadianBornCounterpart: {
+        wage: "Le salaire de votre homologue né au Canada est entre",
+        error:
+          "La taille de l’échantillon est trop petite pour simuler le salaire de votre homologue né au Canada.",
+      },
+      establishedImmigrantCounterpart: {
+        wage: "Le salaire de votre homologue immigrant est entre",
+        error:
+          "La taille de l’échantillon est trop petite pour simuler le salaire de votre homologue immigrant.",
+      },
+      recentImmigrantCounterpart: {
+        wage: "Le salaire de votre homologue immigrant est entre",
+        error:
+          "La taille de l’échantillon est trop petite pour simuler le salaire de votre homologue immigrant.",
+      },
     },
   },
   closePopup: "Close",

@@ -1,4 +1,4 @@
-import { Dataset, FormMeta, SelectMeta, ElementState } from "@/datasets/models";
+import { Dataset } from "@/datasets/models";
 import { LocaleUtils } from "@/utils/locale-utils";
 import { useContext } from "react";
 import { Hero } from "react-bulma-components";
@@ -14,17 +14,6 @@ interface IProp {
   onHideResults: () => void;
 }
 
-const compileData = (index: number, formMeta: FormMeta) => {
-  return Array.from(formMeta.values()).reduce(
-    (previous, selectMeta: SelectMeta) =>
-      selectMeta.elementState === ElementState.ENABLED &&
-      selectMeta.weight.length
-        ? previous + selectMeta.weight[index]
-        : previous,
-    0
-  );
-};
-
 export const ResultsDialog = ({ configuration, onHideResults }: IProp) => {
   /**
    * SETUP
@@ -38,17 +27,12 @@ export const ResultsDialog = ({ configuration, onHideResults }: IProp) => {
    */
 
   const displayData = () => {
-    const compiledWeights = [];
-
-    for (let i = 0; i < configuration.weightCount; i++) {
-      compiledWeights.push(compileData(i, formMeta));
-    }
-
     switch (configuration.id) {
       case "discrimination": {
         return (
           <DiscriminationResults
-            calculatedWeights={compiledWeights}
+            configuration={configuration}
+            formMeta={formMeta}
             labels={labels.datatype.discrimination}
           ></DiscriminationResults>
         );
@@ -57,7 +41,8 @@ export const ResultsDialog = ({ configuration, onHideResults }: IProp) => {
       case "wages": {
         return (
           <WagesResults
-            calculatedWeights={compiledWeights}
+            configuration={configuration}
+            formMeta={formMeta}
             labels={labels.datatype.wages}
           ></WagesResults>
         );
