@@ -8,7 +8,7 @@ interface IProp {
   labels: typeof en.datatype.discrimination;
 }
 
-const USED_DATA_POINTS = [0];
+const USED_DATA_POINTS = [1];
 
 function getCompiledWeights(formMeta: FormMeta) {
   const score = (weight: number) =>
@@ -35,9 +35,9 @@ export function DiscriminationResults({
   return (
     <div>
       {getCompiledWeights(formMeta).map((weight, weightIndex) => (
-        <Card className="discrimination-results" key={weightIndex}>
+        <Card className="discrimination-results" key={weightIndex + 1}>
           <Card.Content>
-            <h2>{labels.headerLabels[weightIndex]}</h2>
+            <h2>{labels.headerLabels[weightIndex + 1]}</h2>
             <Content
               dangerouslySetInnerHTML={{
                 __html: labels.scoreLabel(weight),

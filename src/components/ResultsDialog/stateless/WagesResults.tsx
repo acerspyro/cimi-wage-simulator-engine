@@ -200,17 +200,13 @@ function displayBornInCanada(
       {checkBounds(results, ResultKey.ChildEstablishedImmigrant) ? (
         <Content>
           {labels.establishedImmigrantCounterpart.wage}&nbsp;
-          <span>
-            {weightToCurrencyAmount(
-              results.childEstablishedImmigrant[WeightKey.Lower]
-            )}
-          </span>
+          {weightToCurrencyAmount(
+            results.childEstablishedImmigrant[WeightKey.Lower]
+          )}
           &nbsp;{labels.and}&nbsp;
-          <span>
-            {weightToCurrencyAmount(
-              results.childEstablishedImmigrant[WeightKey.Upper]
-            )}
-          </span>
+          {weightToCurrencyAmount(
+            results.childEstablishedImmigrant[WeightKey.Upper]
+          )}
           ,&nbsp;{labels.gap}&nbsp;
           <strong>
             {weightToCurrencyAmount(childEstablishedImmigrantGap)}
@@ -225,13 +221,9 @@ function displayBornInCanada(
       {checkBounds(results, ResultKey.RecentImmigrant) ? (
         <Content>
           {labels.recentImmigrantCounterpart.wage}&nbsp;
-          <span>
-            {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Lower])}
-          </span>
+          {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Lower])}
           &nbsp;{labels.and}&nbsp;
-          <span>
-            {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Upper])}
-          </span>
+          {weightToCurrencyAmount(results.recentImmigrant[WeightKey.Upper])}
           ,&nbsp;{labels.gap}&nbsp;
           <strong>{weightToCurrencyAmount(recentImmigrantGap)}</strong>.
         </Content>
@@ -288,13 +280,9 @@ function displayImmigratedToCanada(
       {checkBounds(results, resultKey) ? (
         <Content>
           {labels.canadianBornCounterpart.wage}&nbsp;
-          <span>
-            {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
-          </span>
+          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Lower])}
           &nbsp;{labels.and}&nbsp;
-          <span>
-            {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
-          </span>
+          {weightToCurrencyAmount(results.canadianBorn[WeightKey.Upper])}
           ,&nbsp;{labels.gap}&nbsp;
           <strong>{weightToCurrencyAmount(wageGap)}</strong>.
         </Content>
