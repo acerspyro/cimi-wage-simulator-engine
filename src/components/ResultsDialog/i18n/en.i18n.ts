@@ -6,7 +6,7 @@ export const en = {
         "Since the pandemic started\u2026",
       ],
       scoreLabel: (value: string) =>
-        `You have a <span>${value}%</span> chance of having experienced discrimination or being treated unfairly.`,
+        `you have had a <span>${value}%</span> chance of having experienced discrimination or being treated unfairly.`,
     },
     wages: {
       and: "and",

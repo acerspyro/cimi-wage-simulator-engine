@@ -8,7 +8,7 @@ export const fr = {
         "Depuis le début de la pandémie\u2026",
       ],
       scoreLabel: (value: string) =>
-        `Vous avez une probabilité de <span>${value}\u00a0%</span> d’avoir été victime de discrimination ou traitement injuste.`,
+        `vous aviez une probabilité de <span>${value}\u00a0%</span> d’avoir été victime de discrimination ou traitement injuste.`,
     },
     wages: {
       and: "et",
