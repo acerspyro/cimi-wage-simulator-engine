@@ -9,7 +9,7 @@ import { fr } from "./i18n/fr.i18n";
 
 const availableDatasets: Dataset.Source[] = [
   wagesData.default,
-  discriminationData.default,
+  // discriminationData.default, // Disabled per client's request.
 ];
 
 export function Simulator() {
@@ -74,7 +74,7 @@ export function Simulator() {
 
   return (
     <div className="container">
-      <SimulatorTabs />
+      {/*<SimulatorTabs />*/ /* Disabled per client's request. */}
       {availableDatasets.map((form) => simulatorTabContent(form))}
     </div>
   );
