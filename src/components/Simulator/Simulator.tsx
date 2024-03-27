@@ -1,11 +1,10 @@
 import * as wagesData from "@datasets/wages";
-import * as discriminationData from "@datasets/discrimination";
-import { Dataset } from "@/datasets/models";
-import { LocaleUtils } from "@/utils/locale-utils";
-import { useState } from "react";
-import { SimulationForm } from "../SimulationForm/SimulationForm";
-import { en } from "./i18n/en.i18n";
-import { fr } from "./i18n/fr.i18n";
+import {Dataset} from "@/datasets/models";
+import {LocaleUtils} from "@/utils/locale-utils";
+import {useState} from "react";
+import {SimulationForm} from "../SimulationForm/SimulationForm";
+import {en} from "./i18n/en.i18n";
+import {fr} from "./i18n/fr.i18n";
 
 const availableDatasets: Dataset.Source[] = [
   wagesData.default,

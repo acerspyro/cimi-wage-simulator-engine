@@ -1,4 +1,4 @@
-import { Dataset, Datatype } from "../models/configuration.model";
+import {Dataset, Datatype} from "@datasets/models";
 
 const PIVOT_KEY = "cma";
 
@@ -11,7 +11,7 @@ export function sourceDataToCmaPivotedData(
   /**
    * Replace CMA weights with a record of all CMAs and their weights
    */
-  let result = Object.fromEntries(
+  const result = Object.fromEntries(
     Object.entries(cmaSource).map(([key, val]) => [
       key,
       key === PIVOT_KEY ? getCmaWeightsFromSource(source.data) : val,
@@ -41,20 +41,22 @@ function clearWeights(pivoted: Datatype.Pivoted): Datatype.Pivoted {
   const walk = (elem: Object | Array<number>) => {
     if (Array.isArray(elem)) {
       return [];
-    } else {
-      return Object.fromEntries(
-        Object.entries(elem).map((subelem): any => {
-          return [subelem[0], walk(subelem[1])];
-        })
-      );
     }
+
+    return Object.fromEntries(
+      Object.entries(elem).map((subelem): any => {
+        return [subelem[0], walk(subelem[1])];
+      })
+    );
   };
 
   const clearedWeights = walk(pivoted);
 
+  /** @fixme not sure why TS is suddenly complaining after an update */
+  // @ts-ignore
   if (clearedWeights["cma"] && !Array.isArray(clearedWeights["cma"])) {
     return clearedWeights as Datatype.Pivoted;
-  } else {
-    throw new Error("Pivoted data does not include CMA!");
   }
+
+  throw new Error("Pivoted data does not include CMA!");
 }

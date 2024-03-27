@@ -7,8 +7,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "wp:build": "wp-scripts build",
-    "wp:start": "wp-scripts start",
     "generate-weights": "npx ts-node --esm --experimental-specifier-resolution=node ./generator/src/index.ts"
   },
   "dependencies": {
@@ -27,11 +25,13 @@
     "@types/react": "^18.2.69",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
+    "@wordpress/blocks": "^12.31.0",
+    "@wordpress/element": "^5.31.0",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-delete": "^2.0.0",
     "sass": "^1.72.0",
     "typescript": "^5.4.3",
-    "vite": "^5.2.3",
+    "vite": "^5.2.4",
     "vite-plugin-singlefile": "^2.0.1"
   }
 }
